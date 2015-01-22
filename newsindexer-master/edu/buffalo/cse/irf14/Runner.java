@@ -1,6 +1,7 @@
 /**
- * AUTHOR: Ankit Sarraf
- * DATED : January 21, 2014
+ * AUTHOR : Ankit Sarraf
+ * DATED  : January 21, 2014
+ * ABOUT  : Runner class. The real execution of the project
  */
 package edu.buffalo.cse.irf14;
 
@@ -58,14 +59,19 @@ public class Runner {
 					continue;
 				}
 
-				for (String f : files) {
+				// Iterate for each file in the Category directory 
+				for (String file : files) {
 					try {
-						d = Parser.parse(dir.getAbsolutePath() + File.separator +f);
+						// Parsing Starts
+						d = Parser.parse(
+								dir.getAbsolutePath() + File.separator + file);
+						
+						// TODO: We'll come to this later
 						writer.addDocument(d);
-					} catch (ParserException e) {
-						// TODO Auto-generated catch block
+					} catch (ParserException pe) {
 						e.printStackTrace();
-					} 
+						System.out.println(pe.getMessage());
+					}
 				}
 			}
 
