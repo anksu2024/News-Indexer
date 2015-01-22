@@ -1,9 +1,10 @@
-package edu.buffalo.cse.irf14.document;
-
 /**
- * @author nikhillo
- * Class that parses a given file into a Document
+ * AUTHOR : Ankit Sarraf
+ * DATED  : January 22, 2014
+ * ABOUT  : Class that parses a given file into a Document
  */
+
+package edu.buffalo.cse.irf14.document;
 
 public class Parser {
 	/**
