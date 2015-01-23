@@ -1,6 +1,6 @@
 /**
  * AUTHOR : Ankit Sarraf
- * DATED  : January 22, 2014
+ * DATED  : January 22, 2015
  * ABOUT  : Class that parses a given file into a Document
  */
 
@@ -13,7 +13,7 @@ public class Parser {
 	 * @return The parsed and fully loaded Document object
 	 * @throws ParserException In case any error occurs during parsing
 	 */
-	public static Document parse(String filename) throws ParserException {
+	public static Document parse(String fileName) throws ParserException {
 		// TODO YOU MUST IMPLEMENT THIS
 		return null;
 	}
