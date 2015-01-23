@@ -1,21 +1,19 @@
 /**
- * 
+ * AUTHOR : Ankit Sarraf
+ * DATED  : January 22, 2015
+ * ABOUT  : Wrapper class that holds {@link FieldNames} to value mapping
  */
 package edu.buffalo.cse.irf14.document;
 
 import java.util.HashMap;
 
-/**
- * @author nikhillo
- * Wrapper class that holds {@link FieldNames} to value mapping
- */
 public class Document {
-	//Sample implementation - you can change this if you like
+	// TODO: Check this again for understanding the usage
+	// Document is implemented in form of a HashMap
+	// KEY: ?? & VALUE: ??
 	private HashMap<FieldNames, String[]> map;
 	
-	/**
-	 * Default constructor
-	 */
+	// Default constructor
 	public Document() {
 		map = new HashMap<FieldNames, String[]>();
 	}
@@ -25,8 +23,8 @@ public class Document {
 	 * @param fn : The {@link FieldNames} to be set
 	 * @param o : The value to be set to
 	 */
-	public void setField(FieldNames fn, String... o) {
-		map.put(fn, o);
+	public void setField(FieldNames fieldNames, String ... o) {
+		map.put(fieldNames, o);
 	}
 	
 	/**
@@ -34,7 +32,7 @@ public class Document {
 	 * @param fn : The field name to query
 	 * @return The associated value, null if not found
 	 */
-	public String[] getField(FieldNames fn) {
-		return map.get(fn);
+	public String[] getField(FieldNames fieldNames) {
+		return map.get(fieldNames);
 	}
 }
