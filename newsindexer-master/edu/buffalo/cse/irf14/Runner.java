@@ -1,6 +1,6 @@
 /**
  * AUTHOR : Ankit Sarraf
- * DATED  : January 21, 2014
+ * DATED  : January 21, 2015
  * ABOUT  : Runner class. The real execution of the project
  */
 
@@ -68,9 +68,9 @@ public class Runner {
 								dir.getAbsolutePath() + File.separator + file);
 						
 						// TODO: We'll come to this later
+						System.exit(0);
 						writer.addDocument(d);
 					} catch (ParserException pe) {
-						e.printStackTrace();
 						System.out.println(pe.getMessage());
 					}
 				}
