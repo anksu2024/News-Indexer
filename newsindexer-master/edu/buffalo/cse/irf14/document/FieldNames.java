@@ -12,6 +12,6 @@ public enum FieldNames {
 	AUTHOR,			// Author of Document (Optional present in <AUTHOR> tag)
 	AUTHORORG,		// Author's organization (Also contained in <AUTHOR> tag)
 	PLACE,			// Present as first word in news text (Just after <AUTHOR>)
-	NEWSDATE,		// Date on which news was reported (Formatted as MMMMM dd)
-	CONTENT			// Actual News content (Rest of article without metadata)
+	NEWSDATE,		// Date on which news was reported (Formatted as MMMMM DD)
+	CONTENT			// Actual News content (Rest of article without Meta Data)
 };
