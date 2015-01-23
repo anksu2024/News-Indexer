@@ -6,6 +6,11 @@
 
 package edu.buffalo.cse.irf14.document;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.regex.Pattern;
+
 public class Parser {
 	/**
 	 * Static method to parse the given file into the Document object
@@ -14,7 +19,78 @@ public class Parser {
 	 * @throws ParserException In case any error occurs during parsing
 	 */
 	public static Document parse(String fileName) throws ParserException {
-		// TODO YOU MUST IMPLEMENT THIS
+		try {
+			// Open the file referred to by fileName
+			BufferedReader reader = 
+					new BufferedReader(new FileReader(fileName));
+
+			// String to store Meta Data of the File. Refer FieldNames.java
+			String [] metadata = new String [8];
+
+			int tempIndex1 = fileName.lastIndexOf('/');
+			metadata[0] = fileName.substring(tempIndex1 + 1);
+			
+			int tempIndex0 = fileName.lastIndexOf('/', tempIndex1 - 1);
+			metadata[1] = fileName.substring(tempIndex0 + 1, tempIndex1);
+
+			// Check the switch case to know more
+			int counter = 0;
+			
+			// Pattern used to check if text is about Place and Date 
+			Pattern pattern = Pattern.compile("[A-Z]{2,}.*-.*");
+			
+			// Boolean again to indicate initial reading of file after Author
+			boolean firstEntry = true;
+			
+			// Read the file line wise
+			String line;
+			while((line = reader.readLine()) != null) {
+				line = line.trim();
+
+				if(line.equals("")) {
+					// If it is an empty string
+					continue;
+				}
+
+				// Parse the Current Line
+				switch(counter) {
+				case 0:
+					// Title
+					metadata[2] = line;
+					counter++;
+					break;
+				case 1:
+					// Author and AuthorOrg
+					if(line.startsWith("<AUTHOR>")) {
+						// Remove the XML Tags (http://bit.do/XMLRemover)
+						line = line.replaceAll("<[^>]+>", "").trim();
+						
+						// Procure Authors from given line
+						metadata[3] = line.split(",")[0].trim().substring(3);
+						
+						// Obtain the AuthorOrg from current line
+						metadata[4] = line.split(",")[1].trim();
+						continue;
+					} 
+					
+					if(firstEntry && pattern.matcher(line).matches()) {
+						int contentStartIndex = line.indexOf("-");
+						int lastOccuranceOfComma = line.lastIndexOf(
+								',', contentStartIndex);
+						metadata[5] = line.substring(0, lastOccuranceOfComma);
+						metadata[6] = line.substring(lastOccuranceOfComma + 2, contentStartIndex - 1);
+						metadata[7] = line.substring(contentStartIndex + 2);
+					} else {
+						metadata[7] = metadata[7].concat(" " + line);
+					}
+					firstEntry = false;
+				}
+			}
+
+			reader.close();
+		} catch (IOException e) {
+			System.out.println("Error while reading the file: " + fileName);
+		}
 		return null;
 	}
 }
