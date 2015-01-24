@@ -7,6 +7,7 @@
 package edu.buffalo.cse.irf14.document;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.regex.Pattern;
@@ -19,6 +20,11 @@ public class Parser {
 	 * @throws ParserException In case any error occurs during parsing
 	 */
 	public static Document parse(String fileName) throws ParserException {
+		if(fileName == null || 
+				fileName.equals("")) {
+			throw new ParserException();
+		}
+
 		try {
 			// Open the file referred to by fileName
 			BufferedReader reader = 
@@ -29,19 +35,19 @@ public class Parser {
 
 			int tempIndex1 = fileName.lastIndexOf('/');
 			metadata[0] = fileName.substring(tempIndex1 + 1);
-			
+
 			int tempIndex0 = fileName.lastIndexOf('/', tempIndex1 - 1);
 			metadata[1] = fileName.substring(tempIndex0 + 1, tempIndex1);
 
 			// Check the switch case to know more
 			int counter = 0;
-			
+
 			// Pattern used to check if text is about Place and Date 
 			Pattern pattern = Pattern.compile("[A-Z]{2,}.*-.*");
-			
+
 			// Boolean again to indicate initial reading of file after Author
 			boolean firstEntry = true;
-			
+
 			// Read the file line wise
 			String line;
 			while((line = reader.readLine()) != null) {
@@ -64,15 +70,15 @@ public class Parser {
 					if(line.startsWith("<AUTHOR>")) {
 						// Remove the XML Tags (http://bit.do/XMLRemover)
 						line = line.replaceAll("<[^>]+>", "").trim();
-						
+
 						// Procure Authors from given line
 						metadata[3] = line.split(",")[0].trim().substring(3);
-						
+
 						// Obtain the AuthorOrg from current line
 						metadata[4] = line.split(",")[1].trim();
 						continue;
 					} 
-					
+
 					if(firstEntry && pattern.matcher(line).matches()) {
 						int contentStartIndex = line.indexOf("-");
 						int lastOccuranceOfComma = line.lastIndexOf(
@@ -88,6 +94,19 @@ public class Parser {
 			}
 
 			reader.close();
+
+			Document document = new Document();
+			document.setField(FieldNames.FILEID, metadata[0]);
+			document.setField(FieldNames.CATEGORY, metadata[1]);
+			document.setField(FieldNames.TITLE, metadata[2]);
+			document.setField(FieldNames.AUTHOR, metadata[3]);
+			document.setField(FieldNames.AUTHORORG, metadata[4]);
+			document.setField(FieldNames.PLACE, metadata[5]);
+			document.setField(FieldNames.NEWSDATE, metadata[6]);
+			document.setField(FieldNames.CONTENT, metadata[7]);
+			return document;
+		} catch(FileNotFoundException e) {
+			throw new ParserException();
 		} catch (IOException e) {
 			System.out.println("Error while reading the file: " + fileName);
 		}

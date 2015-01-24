@@ -12,12 +12,12 @@ public class Document {
 	// Document is implemented in form of a HashMap
 	// KEY: ?? & VALUE: ??
 	private HashMap<FieldNames, String[]> map;
-	
+
 	// Default constructor
 	public Document() {
 		map = new HashMap<FieldNames, String[]>();
 	}
-	
+
 	/**
 	 * Method to set the field value for the given {@link FieldNames} field
 	 * @param fn : The {@link FieldNames} to be set
@@ -26,7 +26,7 @@ public class Document {
 	public void setField(FieldNames fieldNames, String ... o) {
 		map.put(fieldNames, o);
 	}
-	
+
 	/**
 	 * Method to get the field value for a given {@link FieldNames} field
 	 * @param fn : The field name to query
