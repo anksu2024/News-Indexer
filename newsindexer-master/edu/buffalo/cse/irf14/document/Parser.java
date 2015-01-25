@@ -42,8 +42,14 @@ public class Parser {
 			// Check the switch case to know more
 			int counter = 0;
 
-			// Pattern used to check if text is about Place and Date 
-			Pattern pattern = Pattern.compile("[A-Z]{2,}.*-.*");
+			// Pattern to check if text is about Place and Date 
+			Pattern pattern = Pattern.compile(
+					"[[A-Za-z.-]+, ]+[a-zA-Z]+[ ]+[0-9]{1,2}[ ]{0,1}-.*");
+
+			// Pattern to check Place and NewsDate Format
+			Pattern initialPattern = Pattern.compile(
+					"[[A-Za-z.-]+, ]+[a-zA-Z]+[ ]+[0-9]{1,2}[ ]{0,1}-");
+
 
 			// Boolean again to indicate initial reading of file after Author
 			boolean firstEntry = true;
@@ -71,23 +77,78 @@ public class Parser {
 						// Remove the XML Tags (http://bit.do/XMLRemover)
 						line = line.replaceAll("<[^>]+>", "").trim();
 
-						// Procure Authors from given line
-						metadata[3] = line.split(",")[0].trim().substring(3);
+						// Fetch the Author Related Data
+						String [] authorData = line.split(",");
 
-						// Obtain the AuthorOrg from current line
-						metadata[4] = line.split(",")[1].trim();
+						if(authorData.length < 2) {
+							if(authorData[0].startsWith("BY") ||
+									authorData[0].startsWith("by") ||
+									authorData[0].startsWith("By") ||
+									authorData[0].startsWith("bY")) {
+								metadata[3] = authorData[0].trim().substring(3);
+							} else {
+								metadata[4] = line.split(",")[0].trim();
+							}
+						} else {
+
+							// Procure Authors from given line
+							metadata[3] = line.split(",")[0].trim().substring(3);
+
+							// Obtain the AuthorOrg from current line
+							metadata[4] = line.split(",")[1].trim();
+						}
 						continue;
-					} 
+					}
 
-					if(firstEntry && pattern.matcher(line).matches()) {
-						int contentStartIndex = line.indexOf("-");
+					if(firstEntry) {
+						if(!pattern.matcher(line).matches()) {
+							throw new ParserException();
+						}
+
+						int contentStartIndex = 0;
+
+						while(!initialPattern.matcher(
+								line.subSequence(0, 
+										(contentStartIndex + 1))).matches()) {
+							contentStartIndex = 
+									line.indexOf('-', contentStartIndex + 1);
+						}
+
 						int lastOccuranceOfComma = line.lastIndexOf(
 								',', contentStartIndex);
-						metadata[5] = line.substring(0, lastOccuranceOfComma);
-						metadata[6] = line.substring(lastOccuranceOfComma + 2, contentStartIndex - 1);
-						metadata[7] = line.substring(contentStartIndex + 2);
+
+						if(lastOccuranceOfComma == -1) {
+							// Comma missing between Place and NewsDate
+							String [] placeDateString = 
+									line.substring(0, contentStartIndex - 1).
+									trim().split("\\s+");
+
+							// Last 2 items denote the Date
+							int lenPD = placeDateString.length;
+							metadata[5] = "";
+							for(int i = 0 ; i < lenPD - 2 ; i++) {
+								metadata[5] = metadata[5].concat(" " + placeDateString[i]).trim();
+							}
+
+							metadata[6] = placeDateString[lenPD - 2].concat(
+									" " + placeDateString[lenPD - 1]);
+						} else {
+							metadata[5] = line.substring(0, lastOccuranceOfComma);
+							metadata[6] = line.substring(lastOccuranceOfComma + 2, contentStartIndex - 1);
+						}
+
+						try {
+							metadata[7] = line.substring(contentStartIndex + 2);
+						} catch(StringIndexOutOfBoundsException e) {
+							metadata[7] = "";
+						}
 					} else {
-						metadata[7] = metadata[7].concat(" " + line);
+						try {
+							metadata[7] = metadata[7].concat(" " + line);
+						} catch(Exception e) {
+							System.out.println(fileName);
+							System.out.println(line);
+						}
 					}
 					firstEntry = false;
 				}

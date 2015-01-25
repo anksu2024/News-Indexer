@@ -66,13 +66,9 @@ public class Runner {
 						// Parsing Starts
 						d = Parser.parse(
 								dir.getAbsolutePath() + File.separator + file);
-						
 						// TODO: We'll come to this later
-						System.exit(0);
-						writer.addDocument(d);
-					} catch (ParserException pe) {
-						System.out.println(pe.getMessage());
-					}
+						//writer.addDocument(d);
+					} catch(ParserException pe) {}
 				}
 			}
 

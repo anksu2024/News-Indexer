@@ -8,8 +8,4 @@ package edu.buffalo.cse.irf14.document;
 
 public class ParserException extends Exception {
 	private static final long serialVersionUID = 4691717901217832517L;
-	
-	public String getMessage() {
-		return "Some Parser Exception";
-	}
 }
