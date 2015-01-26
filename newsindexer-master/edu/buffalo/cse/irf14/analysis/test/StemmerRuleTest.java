@@ -1,6 +1,3 @@
-/**
- * 
- */
 package edu.buffalo.cse.irf14.analysis.test;
 
 import static org.junit.Assert.*;
@@ -12,10 +9,8 @@ import edu.buffalo.cse.irf14.analysis.TokenizerException;
 
 /**
  * @author nikhillo
- *
  */
 public class StemmerRuleTest extends TFRuleBaseTest {
-
 	@Test
 	public final void testRule() {
 		try {
@@ -37,5 +32,4 @@ public class StemmerRuleTest extends TFRuleBaseTest {
 			fail("Exception thrown when not expected!");
 		}
 	}
-
 }

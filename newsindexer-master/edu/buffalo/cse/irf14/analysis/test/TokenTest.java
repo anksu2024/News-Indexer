@@ -1,6 +1,3 @@
-/**
- * 
- */
 package edu.buffalo.cse.irf14.analysis.test;
 
 import static org.junit.Assert.*;
@@ -25,24 +22,24 @@ import edu.buffalo.cse.irf14.analysis.TokenizerException;
 public class TokenTest {
 	private static Method m;
 	private TokenStream stream;
-	
+
 	@BeforeClass
 	public static final void setupBeforeClass() throws Exception {
 		m = Token.class.getDeclaredMethod("merge", Token[].class);
 		m.setAccessible(true);
 	}
-	
+
 	@AfterClass
 	public static final void teardownAfterClass() {
 		m = null;
 	}
-	
+
 	@Before
 	public final void setup() throws TokenizerException {
 		Tokenizer tknizer = new Tokenizer();
 		stream = tknizer.consume("test string with a lot of tokens that we are just going to keep testing on");
 	}
-	
+
 	@After
 	public final void teardown() {
 		while (stream.hasNext()) {
@@ -50,7 +47,7 @@ public class TokenTest {
 			stream.remove();
 		}
 	}
-	
+
 	@Test
 	public final void testSingleMerge() throws Exception {
 		//positive case -- test one merge
@@ -69,27 +66,27 @@ public class TokenTest {
 		//simple test
 		assertNotNull(stream);
 		stream.reset();
-		
+
 		Token t;
 		String[] rv = {"test", "string"};
 		String str;
-		
+
 		for (int i = 0; i < 2; i++) {
 			t = stream.next();
 			assertNotNull(t);
 			str = t.toString();
-			
+
 			if (str != null && !str.isEmpty())
 				assertEquals(rv[i], t.toString());
 		}
 	}
-	
+
 	@Test
 	public final void testMultiMerge() throws Exception {
 		//multi test
 		assertNotNull(stream);
 		stream.reset();
-		
+
 		Token tgt = null;
 		Token[] tokens = new Token[15];
 		int i = 0;
@@ -99,29 +96,28 @@ public class TokenTest {
 			} else {
 				tokens[i++] = stream.next();
 			}
-			
+
 		}
-		
+
 		invokeMerge(tgt, tokens);
 		assertNotNull(tgt);
 		assertEquals("test string with a lot of tokens that we are just going to keep testing on", tgt.toString());
 	}
-	
+
 	@Test
 	public final void testNegative() throws Exception {
 		assertNotNull(stream);
-		
+
 		Token t = stream.next();
 		assertNotNull(t);
 		assertEquals("test", t.toString());
-		
+
 		invokeMerge(t, (Token[]) null);
 		assertEquals("test", t.toString());
 	}
-	
+
 	private static void invokeMerge(Token dest, Token... targets) throws Exception {
 		Object[] param = {targets};
 		m.invoke(dest, param);
 	}
-
 }

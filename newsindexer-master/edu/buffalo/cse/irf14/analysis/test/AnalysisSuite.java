@@ -6,16 +6,16 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ CapitalizationRuleTest.class,
-				AccentRuleTest.class,
-				DateRuleTest.class,
-				NumberRuleTest.class,
-				SpecialCharRuleTest.class,
-				StopWordsRuleTest.class,
-				SymbolRuleTest.class,
-				StemmerRuleTest.class,
-				TokenizerTest.class,
-				TokenStreamTest.class,
-				TokenTest.class})
+	AccentRuleTest.class,
+	DateRuleTest.class,
+	NumberRuleTest.class,
+	SpecialCharRuleTest.class,
+	StopWordsRuleTest.class,
+	SymbolRuleTest.class,
+	StemmerRuleTest.class,
+	TokenizerTest.class,
+	TokenStreamTest.class,
+	TokenTest.class})
 public class AnalysisSuite {
 
 }

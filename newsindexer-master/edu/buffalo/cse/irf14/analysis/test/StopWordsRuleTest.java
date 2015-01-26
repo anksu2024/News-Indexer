@@ -1,6 +1,3 @@
-/**
- * 
- */
 package edu.buffalo.cse.irf14.analysis.test;
 
 import static org.junit.Assert.*;
@@ -12,11 +9,8 @@ import edu.buffalo.cse.irf14.analysis.TokenizerException;
 
 /**
  * @author nikhillo
- *
  */
 public class StopWordsRuleTest extends TFRuleBaseTest{
-
-	
 	@Test
 	public void testRule() {
 		try {
