@@ -15,7 +15,7 @@ package edu.buffalo.cse.irf14.analysis;
 public class Token {
 	//The backing string representation -- can contain extraneous information
 	private String termText;
-	
+
 	//The char array backing termText
 	private char[] termBuffer;
 
@@ -69,11 +69,11 @@ public class Token {
 	 */
 	protected void merge(Token...tokens) {
 		StringBuffer builder = new StringBuffer(this.termText);
-		
+
 		for(Token token : tokens) {
 			builder.append(" " + token.toString());
 		}
-		
+
 		termText = builder.toString().trim();
 		termBuffer = termText.toCharArray();
 	}
