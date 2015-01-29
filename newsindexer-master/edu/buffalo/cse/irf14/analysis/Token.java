@@ -1,22 +1,24 @@
 /**
- * 
+ * AUTHOR : Ankit Sarraf
+ * DATED  : January 25, 2015
+ * ABOUT  : This class represents the smallest indexable unit of text.
+ *          At the very least it is backed by a string representation that
+ *          can be interchangeably used with the backing char array.
  */
+
 package edu.buffalo.cse.irf14.analysis;
 
 /**
- * @author nikhillo
- * This class represents the smallest indexable unit of text.
- * At the very least it is backed by a string representation that
- * can be interchangeably used with the backing char array.
- * 
  * You are encouraged to add more data structures and fields as you deem fit. 
  */
+
 public class Token {
 	//The backing string representation -- can contain extraneous information
 	private String termText;
+	
 	//The char array backing termText
 	private char[] termBuffer;
-	
+
 	/**
 	 * Method to set the termText to given text.
 	 * This is a sample implementation and you CAN change this
@@ -27,7 +29,7 @@ public class Token {
 		termText = text;
 		termBuffer = (termText != null) ? termText.toCharArray() : null;
 	}
-	
+
 	/**
 	 * Getter for termText
 	 * This is a sample implementation and you CAN change this
@@ -37,7 +39,7 @@ public class Token {
 	protected String getTermText() {
 		return termText;
 	}
-	
+
 	/**
 	 * Method to set the termBuffer to the given buffer.
 	 * This is a sample implementation and you CAN change this
@@ -48,7 +50,7 @@ public class Token {
 		termBuffer = buffer;
 		termText = new String(buffer);
 	}
-	
+
 	/**
 	 * Getter for the field termBuffer
 	 * @return The termBuffer
@@ -56,7 +58,7 @@ public class Token {
 	protected char[] getTermBuffer() {
 		return termBuffer;
 	}
-	
+
 	/**
 	 * Method to merge this token with the given array of Tokens
 	 * You are free to update termText and termBuffer as you please
@@ -66,9 +68,16 @@ public class Token {
 	 * @param tokens The token array to be merged
 	 */
 	protected void merge(Token...tokens) {
-		//TODO : YOU MUST IMPLEMENT THIS METHOD
+		StringBuffer builder = new StringBuffer(this.termText);
+		
+		for(Token token : tokens) {
+			builder.append(" " + token.toString());
+		}
+		
+		termText = builder.toString().trim();
+		termBuffer = termText.toCharArray();
 	}
-	
+
 	/**
 	 * Returns the string representation of this token. It must adhere to the
 	 * following rules:
@@ -83,7 +92,6 @@ public class Token {
 	 */
 	@Override
 	public String toString() {
-		//TODO: YOU MUST IMPLEMENT THIS METHOD
-		return null;
+		return termText.trim();
 	}
 }
