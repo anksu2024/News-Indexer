@@ -1,15 +1,17 @@
 /**
- * 
+ * AUTHOR : Ankit Sarraf
+ * DATED  : 
+ * ABOUT  : This factory class is responsible for 
+ *          instantiating "chained" {@link Analyzer} instances
  */
+
 package edu.buffalo.cse.irf14.analysis;
 
 import edu.buffalo.cse.irf14.document.FieldNames;
 
-/**
- * @author nikhillo
- * This factory class is responsible for instantiating "chained" {@link Analyzer} instances
- */
 public class AnalyzerFactory {
+	static private AnalyzerFactory instance = null; 
+
 	/**
 	 * Static method to return an instance of the factory class.
 	 * Usually factory classes are defined as singletons, i.e. 
@@ -22,10 +24,14 @@ public class AnalyzerFactory {
 	 * @return An instance of the factory
 	 */
 	public static AnalyzerFactory getInstance() {
-		//TODO: YOU NEED TO IMPLEMENT THIS METHOD
-		return null;
+		if(instance == null) {
+			instance = new AnalyzerFactory();
+		}
+		return instance;
 	}
-	
+
+	private AnalyzerFactory() {}
+
 	/**
 	 * Returns a fully constructed and chained {@link Analyzer} instance
 	 * for a given {@link FieldNames} field
@@ -38,6 +44,24 @@ public class AnalyzerFactory {
 	 * null otherwise
 	 */
 	public Analyzer getAnalyzerForField(FieldNames name, TokenStream stream) {
+		if(name == FieldNames.FILEID) {
+		
+		} else if(name == FieldNames.CATEGORY) {
+			
+		} else if(name == FieldNames.TITLE) {
+			
+		} else if(name == FieldNames.AUTHOR) {
+			
+		} else if(name == FieldNames.AUTHORORG) {
+			
+		} else if(name == FieldNames.CONTENT) {
+			
+		} else if(name == FieldNames.PLACE) {
+			
+		} else {
+			
+		}
+		
 		//TODO : YOU NEED TO IMPLEMENT THIS METHOD
 		return null;
 	}
