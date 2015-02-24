@@ -1,12 +1,12 @@
 /**
- * 
+ * AUTHOR : Ankit Sarraf
+ * DATED  : February 23, 2015
+ * ABOUT  : Class that converts a given string into a
+ *          {@link TokenStream} instance
  */
+
 package edu.buffalo.cse.irf14.analysis;
 
-/**
- * @author nikhillo
- * Class that converts a given string into a {@link TokenStream} instance
- */
 public class Tokenizer {
 	/**
 	 * Default constructor. Assumes tokens are whitespace delimited
@@ -14,7 +14,7 @@ public class Tokenizer {
 	public Tokenizer() {
 		//TODO : YOU MUST IMPLEMENT THIS METHOD
 	}
-	
+
 	/**
 	 * Overloaded constructor. Creates the tokenizer with the given delimiter
 	 * @param delim : The delimiter to be used
@@ -22,7 +22,7 @@ public class Tokenizer {
 	public Tokenizer(String delim) {
 		//TODO : YOU MUST IMPLEMENT THIS METHOD
 	}
-	
+
 	/**
 	 * Method to convert the given string into a TokenStream instance.
 	 * This must only break it into tokens and initialize the stream.
