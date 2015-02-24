@@ -1,18 +1,17 @@
 /**
- * 
+ * AUTHOR : Ankit Sarraf
+ * DATED  : February 23, 2015
+ * ABOUT  : Class that represents a stream of Tokens. All {@link Analyzer} and
+ *          {@link TokenFilter} instances operate on this to implement their
+ *          behavior
  */
+
 package edu.buffalo.cse.irf14.analysis;
 
 import java.util.Iterator;
 
-/**
- * @author nikhillo
- * Class that represents a stream of Tokens. All {@link Analyzer} and
- * {@link TokenFilter} instances operate on this to implement their
- * behavior
- */
 public class TokenStream implements Iterator<Token>{
-	
+
 	/**
 	 * Method that checks if there is any Token left in the stream
 	 * with regards to the current pointer.
@@ -37,7 +36,7 @@ public class TokenStream implements Iterator<Token>{
 		// TODO YOU MUST IMPLEMENT THIS
 		return null;
 	}
-	
+
 	/**
 	 * Method to remove the current Token from the stream.
 	 * Note that "current" token refers to the Token just returned
@@ -47,9 +46,9 @@ public class TokenStream implements Iterator<Token>{
 	@Override
 	public void remove() {
 		// TODO YOU MUST IMPLEMENT THIS
-		
+
 	}
-	
+
 	/**
 	 * Method to reset the stream to bring the iterator back to the beginning
 	 * of the stream. Unless the stream has no tokens, hasNext() after calling
@@ -58,7 +57,7 @@ public class TokenStream implements Iterator<Token>{
 	public void reset() {
 		//TODO : YOU MUST IMPLEMENT THIS
 	}
-	
+
 	/**
 	 * Method to append the given TokenStream to the end of the current stream
 	 * The append must always occur at the end irrespective of where the iterator
@@ -71,7 +70,7 @@ public class TokenStream implements Iterator<Token>{
 	public void append(TokenStream stream) {
 		//TODO : YOU MUST IMPLEMENT THIS
 	}
-	
+
 	/**
 	 * Method to get the current Token from the stream without iteration.
 	 * The only difference between this method and {@link TokenStream#next()} is that
@@ -83,6 +82,5 @@ public class TokenStream implements Iterator<Token>{
 	public Token getCurrent() {
 		//TODO: YOU MUST IMPLEMENT THIS
 		return null;
-	}
-	
+	}	
 }
