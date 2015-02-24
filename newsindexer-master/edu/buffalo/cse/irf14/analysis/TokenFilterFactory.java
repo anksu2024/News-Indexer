@@ -10,6 +10,8 @@ package edu.buffalo.cse.irf14.analysis;
  *
  */
 public class TokenFilterFactory {
+	static private TokenFilterFactory tokenFilterFactory = null;
+	
 	/**
 	 * Static method to return an instance of the factory class.
 	 * Usually factory classes are defined as singletons, i.e. 
@@ -22,8 +24,11 @@ public class TokenFilterFactory {
 	 * @return An instance of the factory
 	 */
 	public static TokenFilterFactory getInstance() {
-		//TODO : YOU MUST IMPLEMENT THIS METHOD
-		return null;
+		if(tokenFilterFactory == null) {
+			tokenFilterFactory = new TokenFilterFactory();
+		}
+		
+		return tokenFilterFactory;
 	}
 	
 	/**
@@ -35,7 +40,28 @@ public class TokenFilterFactory {
 	 * @return The built {@link TokenFilter} instance
 	 */
 	public TokenFilter getFilterByType(TokenFilterType type, TokenStream stream) {
-		//TODO : YOU MUST IMPLEMENT THIS METHOD
+		if(type != null) {
+			if(type == TokenFilterType.ACCENT) {
+				
+			} else if(type == TokenFilterType.CAPITALIZATION) {
+				
+			} else if(type == TokenFilterType.DATE) {
+				
+			} else if(type == TokenFilterType.NUMERIC) {
+				
+			} else if(type == TokenFilterType.SPECIALCHARS) {
+				
+			} else if(type == TokenFilterType.STEMMER) {
+				
+			} else if(type == TokenFilterType.STOPWORD) {
+				
+			} else if(type == TokenFilterType.STOPWORD) {
+				
+			} else if(type == TokenFilterType.SYMBOL){
+				
+			}
+		}
+		
 		return null;
 	}
 }
