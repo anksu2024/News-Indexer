@@ -44,25 +44,26 @@ public class AnalyzerFactory {
 	 * null otherwise
 	 */
 	public Analyzer getAnalyzerForField(FieldNames name, TokenStream stream) {
-		if(name == FieldNames.FILEID) {
-		
-		} else if(name == FieldNames.CATEGORY) {
-			
-		} else if(name == FieldNames.TITLE) {
-			
-		} else if(name == FieldNames.AUTHOR) {
-			
-		} else if(name == FieldNames.AUTHORORG) {
-			
-		} else if(name == FieldNames.CONTENT) {
-			
-		} else if(name == FieldNames.PLACE) {
-			
-		} else {
-			
+		if(name != null) {
+			if(name == FieldNames.FILEID) {
+
+			} else if(name == FieldNames.CATEGORY) {
+
+			} else if(name == FieldNames.TITLE) {
+
+			} else if(name == FieldNames.AUTHOR) {
+
+			} else if(name == FieldNames.AUTHORORG) {
+
+			} else if(name == FieldNames.CONTENT) {
+
+			} else if(name == FieldNames.PLACE) {
+
+			} else if(name == FieldNames.NEWSDATE) {
+
+			}
 		}
-		
-		//TODO : YOU NEED TO IMPLEMENT THIS METHOD
+
 		return null;
 	}
 }
