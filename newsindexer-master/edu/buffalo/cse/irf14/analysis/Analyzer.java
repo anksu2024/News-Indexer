@@ -1,14 +1,14 @@
-package edu.buffalo.cse.irf14.analysis;
-
-import edu.buffalo.cse.irf14.document.FieldNames;
-
 /**
- * @author nikhillo
- * This interface defines all {@link TokenStream} processing
- * It has two purposes:
- * 	- Either be implemented as a single {@link TokenFilter} instance
- *  - Or implemented as a TokenFilter chain that handles {@link FieldNames} specific processing
+ * AUTHOR : Ankit Sarraf
+ * DATED  : February 23, 2015
+ * ABOUT  : This interface defines all {@link TokenStream} processing
+ *          It has two purposes:
+ * 	        - Either be implemented as a single {@link TokenFilter} instance
+ *          - Or implemented as a TokenFilter chain that handles
+ *            {@link FieldNames} specific processing
  */
+
+package edu.buffalo.cse.irf14.analysis;
 
 public interface Analyzer {
 	/**
