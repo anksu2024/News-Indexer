@@ -1,17 +1,14 @@
 /**
- * 
+ * AUTHOR : Ankit Sarraf
+ * DATED  : February 23, 2015
+ * ABOUT  : Factory class for instantiating a given TokenFilter
  */
+
 package edu.buffalo.cse.irf14.analysis;
 
-
-/**
- * Factory class for instantiating a given TokenFilter
- * @author nikhillo
- *
- */
 public class TokenFilterFactory {
 	static private TokenFilterFactory tokenFilterFactory = null;
-	
+
 	/**
 	 * Static method to return an instance of the factory class.
 	 * Usually factory classes are defined as singletons, i.e. 
@@ -27,10 +24,10 @@ public class TokenFilterFactory {
 		if(tokenFilterFactory == null) {
 			tokenFilterFactory = new TokenFilterFactory();
 		}
-		
+
 		return tokenFilterFactory;
 	}
-	
+
 	/**
 	 * Returns a fully constructed {@link TokenFilter} instance
 	 * for a given {@link TokenFilterType} type
@@ -42,26 +39,26 @@ public class TokenFilterFactory {
 	public TokenFilter getFilterByType(TokenFilterType type, TokenStream stream) {
 		if(type != null) {
 			if(type == TokenFilterType.ACCENT) {
-				
+
 			} else if(type == TokenFilterType.CAPITALIZATION) {
-				
+
 			} else if(type == TokenFilterType.DATE) {
-				
+
 			} else if(type == TokenFilterType.NUMERIC) {
-				
+
 			} else if(type == TokenFilterType.SPECIALCHARS) {
-				
+
 			} else if(type == TokenFilterType.STEMMER) {
-				
+
 			} else if(type == TokenFilterType.STOPWORD) {
-				
+
 			} else if(type == TokenFilterType.STOPWORD) {
-				
+
 			} else if(type == TokenFilterType.SYMBOL){
-				
+
 			}
 		}
-		
+
 		return null;
 	}
 }
