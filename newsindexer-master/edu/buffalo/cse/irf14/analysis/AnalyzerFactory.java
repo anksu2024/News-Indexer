@@ -1,6 +1,6 @@
 /**
  * AUTHOR : Ankit Sarraf
- * DATED  : 
+ * DATED  : February 23, 2015
  * ABOUT  : This factory class is responsible for 
  *          instantiating "chained" {@link Analyzer} instances
  */
