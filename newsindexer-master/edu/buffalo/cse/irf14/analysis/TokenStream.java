@@ -8,9 +8,33 @@
 
 package edu.buffalo.cse.irf14.analysis;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class TokenStream implements Iterator<Token>{
+	private List<Token> tokens;
+	private int currentIndex;
+	private int length;
+
+	TokenStream() {
+		tokens = new ArrayList<Token>();
+		currentIndex = 0;
+		setLength();
+	}
+
+	// Getters and Setters
+	public List<Token> getTokens() {
+		return tokens;
+	}
+
+	public void setTokens(List<Token> tokens) {
+		this.tokens = tokens;
+	}
+
+	private void setLength() {
+		length = tokens.size();
+	}
 
 	/**
 	 * Method that checks if there is any Token left in the stream
@@ -20,7 +44,10 @@ public class TokenStream implements Iterator<Token>{
 	 */
 	@Override
 	public boolean hasNext() {
-		// TODO YOU MUST IMPLEMENT THIS
+		if(currentIndex < length) {
+			return true;
+		}
+
 		return false;
 	}
 
@@ -33,7 +60,11 @@ public class TokenStream implements Iterator<Token>{
 	 */
 	@Override
 	public Token next() {
-		// TODO YOU MUST IMPLEMENT THIS
+		if(hasNext()) {
+			return tokens.get(currentIndex++);
+		}
+
+		// Reached end of list
 		return null;
 	}
 
@@ -45,8 +76,11 @@ public class TokenStream implements Iterator<Token>{
 	 */
 	@Override
 	public void remove() {
-		// TODO YOU MUST IMPLEMENT THIS
-
+		if(currentIndex > 0 && currentIndex < length) {
+			tokens.remove(currentIndex - 1);
+			length--;
+			currentIndex--;
+		}
 	}
 
 	/**
@@ -55,7 +89,7 @@ public class TokenStream implements Iterator<Token>{
 	 * reset() must always return true.
 	 */
 	public void reset() {
-		//TODO : YOU MUST IMPLEMENT THIS
+		currentIndex = 0;
 	}
 
 	/**
@@ -68,19 +102,24 @@ public class TokenStream implements Iterator<Token>{
 	 * @param stream : The stream to be appended
 	 */
 	public void append(TokenStream stream) {
-		//TODO : YOU MUST IMPLEMENT THIS
+		tokens.addAll(stream.getTokens());
+		setLength();
 	}
 
 	/**
 	 * Method to get the current Token from the stream without iteration.
-	 * The only difference between this method and {@link TokenStream#next()} is that
-	 * the latter moves the stream forward, this one does not.
-	 * Calling this method multiple times would not alter the return value of {@link TokenStream#hasNext()}
+	 * The only difference between this method and {@link TokenStream#next()}
+	 * is that the latter moves the stream forward, this one does not.
+	 * Calling this method multiple times would not alter the return value of
+	 * {@link TokenStream#hasNext()}
 	 * @return The current {@link Token} if one exists, null if end of stream
 	 * has been reached or the current Token was removed
 	 */
 	public Token getCurrent() {
-		//TODO: YOU MUST IMPLEMENT THIS
+		if(hasNext()) {
+			return tokens.get(currentIndex);
+		}
+		
 		return null;
-	}	
+	}
 }
