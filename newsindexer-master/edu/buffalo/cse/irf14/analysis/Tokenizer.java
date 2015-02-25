@@ -7,12 +7,19 @@
 
 package edu.buffalo.cse.irf14.analysis;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Tokenizer {
+	TokenStream tokenStream;
+	String delimiter;
+
 	/**
 	 * Default constructor. Assumes tokens are whitespace delimited
 	 */
 	public Tokenizer() {
-		//TODO : YOU MUST IMPLEMENT THIS METHOD
+		delimiter = " ";
+		tokenStream = new TokenStream();
 	}
 
 	/**
@@ -20,7 +27,8 @@ public class Tokenizer {
 	 * @param delim : The delimiter to be used
 	 */
 	public Tokenizer(String delim) {
-		//TODO : YOU MUST IMPLEMENT THIS METHOD
+		delimiter = delim;
+		tokenStream = new TokenStream();
 	}
 
 	/**
@@ -38,7 +46,22 @@ public class Tokenizer {
 	 * tokenization
 	 */
 	public TokenStream consume(String str) throws TokenizerException {
-		//TODO : YOU MUST IMPLEMENT THIS METHOD
-		return null;
+		String [] parts = str.split(delimiter);
+
+		if(parts.length < 1) {
+			return null;
+		}
+		
+		List<Token> tokens = new ArrayList<Token>();
+		for(String part : parts) {
+			Token token = new Token();
+			token.setTermText(part);
+
+			tokens.add(token);
+		}
+
+		TokenStream tokenStream = new TokenStream();
+		tokenStream.setTokens(tokens);
+		return tokenStream;
 	}
 }
