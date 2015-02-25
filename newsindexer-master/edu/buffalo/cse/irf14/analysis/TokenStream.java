@@ -20,7 +20,7 @@ public class TokenStream implements Iterator<Token>{
 	TokenStream() {
 		tokens = new ArrayList<Token>();
 		currentIndex = 0;
-		setLength();
+		length = 0;
 	}
 
 	// Getters and Setters
@@ -30,6 +30,7 @@ public class TokenStream implements Iterator<Token>{
 
 	public void setTokens(List<Token> tokens) {
 		this.tokens = tokens;
+		setLength();
 	}
 
 	private void setLength() {
