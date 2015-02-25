@@ -67,7 +67,7 @@ public class Token {
 	 * Also the token order must be maintained.
 	 * @param tokens The token array to be merged
 	 */
-	protected void merge(Token...tokens) {
+	protected void merge(Token ... tokens) {
 		StringBuffer builder = new StringBuffer(this.termText);
 
 		for(Token token : tokens) {
