@@ -53,11 +53,28 @@ public class StopWordRule extends TokenFilter {
 
 	@Override
 	public boolean increment() throws TokenizerException {
-		while(tokenStream.hasNext()) {
+		StringBuffer stringBuffer;
+		if(tokenStream.hasNext()) {
 			Token token = tokenStream.next();
-			String currentString = token.getTermText();
+			stringBuffer = null;
 
+			String [] currentStrings = token.getTermText().split("//s+");
+			for(String currentString : currentStrings) {
+				if(!stopWords.contains(currentString)) {
+					if(stringBuffer == null) {
+						stringBuffer = new StringBuffer();
+					}
+
+					stringBuffer.append(" " + currentString);
+				}
+			}
+
+			if(stringBuffer != null) {
+				token.setTermText(stringBuffer.toString().trim());
+				return true;
+			}
 		}
+
 		return false;
 	}
 
@@ -65,6 +82,4 @@ public class StopWordRule extends TokenFilter {
 	public TokenStream getStream() {
 		return tokenStream;
 	}
-
-
 }
