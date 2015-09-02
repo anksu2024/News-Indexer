@@ -15,10 +15,9 @@ import edu.buffalo.cse.irf14.analysis.TokenStream;
 import edu.buffalo.cse.irf14.analysis.TokenizerException;
 
 public class StopWordRule extends TokenFilter {
-	private Set<String> stopWords;
+	private static Set<String> stopWords;
 
-	StopWordRule(TokenStream tokenStream) {
-		super(tokenStream);
+	static {
 		String [] stopWordList = {"a", "about", "above", "after", "again",
 				"against", "all", "am", "an", "and", "any", "are", "aren't",
 				"as", "at", "be", "because", "been", "before", "being",
@@ -51,16 +50,21 @@ public class StopWordRule extends TokenFilter {
 		}
 	}
 
+	public StopWordRule(TokenStream tokenStream) throws TokenizerException {
+		super(tokenStream);
+		increment();
+	}
+
 	@Override
 	public boolean increment() throws TokenizerException {
 		StringBuffer stringBuffer;
-		if(tokenStream.hasNext()) {
+		while(tokenStream.hasNext()) {
 			Token token = tokenStream.next();
 			stringBuffer = null;
 
 			String [] currentStrings = token.getTermText().split("//s+");
 			for(String currentString : currentStrings) {
-				if(!stopWords.contains(currentString)) {
+				if(!StopWordRule.stopWords.contains(currentString)) {
 					if(stringBuffer == null) {
 						stringBuffer = new StringBuffer();
 					}

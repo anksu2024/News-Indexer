@@ -24,7 +24,6 @@ public class SpecialCharRule extends TokenFilter {
 
 	@Override
 	public TokenStream getStream() {
-		// TODO Auto-generated method stub
-		return null;
+		return tokenStream;
 	}
 }

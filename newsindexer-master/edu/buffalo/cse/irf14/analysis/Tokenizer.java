@@ -18,7 +18,7 @@ public class Tokenizer {
 	 * Default constructor. Assumes tokens are whitespace delimited
 	 */
 	public Tokenizer() {
-		delimiter = " ";
+		delimiter = "\\s+";
 		tokenStream = new TokenStream();
 	}
 
@@ -51,7 +51,7 @@ public class Tokenizer {
 		if(parts.length < 1) {
 			return null;
 		}
-		
+
 		List<Token> tokens = new ArrayList<Token>();
 		for(String part : parts) {
 			Token token = new Token();

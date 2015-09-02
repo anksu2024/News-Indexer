@@ -43,8 +43,7 @@ import java.io.*;
  * by calling one of the various stem(something) methods.
  */
 
-class Stemmer
-{
+class Stemmer {
 	private char[] b;
 	private int i,     /* offset into b */
 	i_end, /* offset to end of stemmed word */

@@ -46,7 +46,7 @@ public class AnalyzerFactory {
 	public Analyzer getAnalyzerForField(FieldNames name, TokenStream stream) {
 		if(name != null) {
 			if(name == FieldNames.FILEID) {
-
+				
 			} else if(name == FieldNames.CATEGORY) {
 
 			} else if(name == FieldNames.TITLE) {

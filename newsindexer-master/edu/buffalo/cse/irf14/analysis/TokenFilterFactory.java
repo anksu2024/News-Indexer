@@ -6,6 +6,8 @@
 
 package edu.buffalo.cse.irf14.analysis;
 
+import edu.buffalo.cse.irf14.analysis.rules.*;
+
 public class TokenFilterFactory {
 	static private TokenFilterFactory tokenFilterFactory = null;
 
@@ -35,11 +37,12 @@ public class TokenFilterFactory {
 	 * is requested
 	 * @param stream: The TokenStream instance to be wrapped
 	 * @return The built {@link TokenFilter} instance
+	 * @throws TokenizerException 
 	 */
-	public TokenFilter getFilterByType(TokenFilterType type, TokenStream stream) {
+	public TokenFilter getFilterByType(TokenFilterType type, TokenStream stream) throws TokenizerException {
 		if(type != null) {
 			if(type == TokenFilterType.ACCENT) {
-
+				
 			} else if(type == TokenFilterType.CAPITALIZATION) {
 
 			} else if(type == TokenFilterType.DATE) {
@@ -51,9 +54,7 @@ public class TokenFilterFactory {
 			} else if(type == TokenFilterType.STEMMER) {
 
 			} else if(type == TokenFilterType.STOPWORD) {
-
-			} else if(type == TokenFilterType.STOPWORD) {
-
+				return new StopWordRule(stream);
 			} else if(type == TokenFilterType.SYMBOL){
 
 			}

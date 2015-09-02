@@ -18,13 +18,12 @@ public class CapitalizationRule extends TokenFilter {
 
 	@Override
 	public boolean increment() throws TokenizerException {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
 	@Override
 	public TokenStream getStream() {
-		// TODO Auto-generated method stub
-		return null;
+		return tokenStream;
 	}
 }
